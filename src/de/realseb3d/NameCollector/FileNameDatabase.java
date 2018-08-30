@@ -8,33 +8,33 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class FileStudentDatabase implements StudentDatabase {
+public class FileNameDatabase implements NameDatabase {
 
 	@Override
-	public String[] readAllStudents() throws StudentDatabaseException {
+	public String[] readAllNames() throws NameDatabaseException {
 		try (BufferedReader b = new BufferedReader(new FileReader("datenbank.txt"))) {
-			String[] students = new String[0];
+			String[] names = new String[0];
 			while (b.ready()) {
-				String student = b.readLine();
-				students = Arrays.copyOf(students, students.length + 1);
-				students[students.length - 1] = student;
+				String name = b.readLine();
+				names = Arrays.copyOf(names, names.length + 1);
+				names[names.length - 1] = name;
 			}
-			return students;
+			return names;
 		} catch (FileNotFoundException e) {
-			throw new StudentDatabaseException(e);
+			throw new NameDatabaseException(e);
 		} catch (IOException e) {
-			throw new StudentDatabaseException(e);
+			throw new NameDatabaseException(e);
 		}
 	}
 
 	@Override
-	public void addStudent(String name) throws StudentDatabaseException {
+	public void addName(String name1) throws NameDatabaseException {
 		try (BufferedWriter b = new BufferedWriter(new FileWriter("datenbank.txt", true))) {
-			b.write("\n" + name);
+			b.write("\n" + name1);
 		} catch (FileNotFoundException e) {
-			throw new StudentDatabaseException(e);
+			throw new NameDatabaseException(e);
 		} catch (IOException e) {
-			throw new StudentDatabaseException(e);
+			throw new NameDatabaseException(e);
 		}
 		 
 	}
