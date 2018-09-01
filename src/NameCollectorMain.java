@@ -1,7 +1,9 @@
+import java.util.Scanner;
+
 import de.realseb3d.NameCollector.*;
 
 /* 
- * V0.0.1
+ * V0.0.2
  * @author Jannis Seemann
  * modified by Sebastian "Seb3D" Lein 
 */
@@ -11,9 +13,14 @@ public class NameCollectorMain {
 	public static void main(String[] args) {
 		
 			NameDatabase db = new FileNameDatabase();
-				
+			
+			Scanner input = new Scanner(System.in);
+			
+			System.out.println("Gebe den einzutragenden Namen ein");
+			String b = input.next();
+			
 			try {
-				db.addName("12345");
+				db.addName(b);
 				
 				String[] names = db.readAllNames();
 				for (String name : names) {
@@ -25,7 +32,7 @@ public class NameCollectorMain {
 				e.printStackTrace();
 			}
 				
-		
+		input.close();
 	}
 
 }
